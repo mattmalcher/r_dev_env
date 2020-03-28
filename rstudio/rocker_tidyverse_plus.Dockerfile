@@ -11,10 +11,17 @@ FROM rocker/tidyverse:latest
 # it installs R packages. See:
 # http://dirk.eddelbuettel.com/code/littler.examples.html
 
-# RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-#  apt_package_name \
-#  another_apt_package \
-#  && install2.r --error \
-#    --deps TRUE \
-#    r_package_name \
-#    another_r_package
+RUN apt-get update -qq && apt-get -y --no-install-recommends install \
+   libgdal-dev \
+  && install2.r --error \
+     --deps TRUE \
+     styler \
+     tidytext \
+     plotly \
+     tidyxl \
+     unpivotr \
+     janitor \
+     rgdal \
+     rgeos \
+     sf \
+     sp
