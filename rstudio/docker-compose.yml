@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+
+  rstudio:
+    # image based on rockr
+    image: mattmalcher/r_dev_env:latest
+    ports:
+      - 8787:8787
+    networks:
+      - rs_net
+    # set environment variables
+    # ONLY to be used locally - so no need for passwords or auth.
+    environment:
+      PASSWORD: "_"
+      ROOT: "TRUE"
+      DISABLE_AUTH: "TRUE"
+    # mount a volume so that changes to packages are maintained between sessions
+    volumes:
+      - type: volume
+        source: rpackages
+        target: /usr/local/lib/R/site-library
+    #
+    # configs:
+    #   - source: rprofile_mm
+    #     target: /redis_config
+
+networks:
+  rs_net:
+
+volumes:
+  rpackages:
+
+# configs:
+#   rprofile_mm:
+#     file: ./config/.Rprofile
